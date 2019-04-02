@@ -1,0 +1,7 @@
+# A successful build produces the following files:
+asset-tag-provisioner/target/lib-asset-tag-provisioner-*-with-dependencies.jar
+asset-tag-provisioner/target/lib-asset-tag-provisioner-*-dependencies.zip
+asset-tag-provisioner/target/lib-asset-tag-provisioner-*.jar
+asset-tag-provisioner/target/lib-asset-tag-provisioner-*-javadoc.zip
+asset-tag-provisioner-integration/target/asset-tag-provisioner-integration-*.jar
+asset-tag-provisioner-integration/target/asset-tag-provisioner-integration-*-with-dependencies.jar
