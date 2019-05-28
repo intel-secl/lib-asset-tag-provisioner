@@ -24,31 +24,23 @@ public class ProvisionAssetTagIntegration {
 
     final TlsPolicy tlsPolicy = new InsecureTlsPolicy();
 
-//    @Integration(parameters = {
-//        "intel:https://192.168.0.1:1443;u=tagentadmin;p=TAgentAdminPassword",
-//        "649f1f1bb2aa40d09721413e120ac80d8c39698abd296b23de8ff3f8cb83b612"
-//    })
     /**
      *
      * @param hostConn
-     * @param sha256Digest
+     * @param sha384Digest
      * @throws IOException
      * @throws NoSuchAlgorithmException
      */
     @Integration
-    public void provisionTagCertificateWithSha256(String hostConn, String sha256Digest) throws IOException, NoSuchAlgorithmException {
+    public void provisionTagCertificateWithSha384(String hostConn, String sha384Digest) throws IOException, NoSuchAlgorithmException {
 
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, IntelHostConnectorFactory.class);
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, MicrosoftHostConnectorFactory.class);
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, VmwareHostConnectorFactory.class);
         ProvisionAssetTag provisionTag = new ProvisionAssetTag();
-        provisionTag.provisionTagCertificate(hostConn, sha256Digest, tlsPolicy);
+        provisionTag.provisionTagCertificate(hostConn, sha384Digest, tlsPolicy);
     }
 
-//    @Integration(parameters = {
-//        "intel:https://192.168.0.1:1443;u=tagentadmin;p=TAgentAdminPassword",
-//        [1,2,3,4,5,6,7,8,9,0,1]
-//    })
     /**
      *
      * @param hostConn
