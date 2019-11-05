@@ -32,7 +32,7 @@ public class ProvisionAssetTagIntegration {
      * @throws NoSuchAlgorithmException
      */
     @Integration
-    public void provisionTagCertificateWithSha384(String hostConn, String sha384Digest) throws IOException, NoSuchAlgorithmException {
+    public void provisionTagCertificateWithSha384(String hostConn, String aasApiUrl, String sha384Digest) throws IOException, NoSuchAlgorithmException {
 
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, IntelHostConnectorFactory.class);
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, MicrosoftHostConnectorFactory.class);
@@ -49,7 +49,7 @@ public class ProvisionAssetTagIntegration {
      * @throws NoSuchAlgorithmException
      */
     @Integration
-    public void provisionTagCertificateWithCertificate(String hostConn, byte[] certificate) throws IOException, NoSuchAlgorithmException {
+    public void provisionTagCertificateWithCertificate(String hostConn, String aasApiUrl, byte[] certificate) throws IOException, NoSuchAlgorithmException {
 
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, IntelHostConnectorFactory.class);
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, MicrosoftHostConnectorFactory.class);
