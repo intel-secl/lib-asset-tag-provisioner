@@ -4,8 +4,12 @@
  */
 package com.intel.mtwilson.core.asset.tag;
 
+import com.intel.dcsg.cpg.configuration.Configuration;
 import com.intel.dcsg.cpg.crypto.Sha384Digest;
 import com.intel.dcsg.cpg.tls.policy.TlsPolicy;
+import com.intel.mtwilson.configuration.ConfigurationFactory;
+import com.intel.mtwilson.configuration.ConfigurationProvider;
+import com.intel.mtwilson.core.common.utils.AASConstants;
 import com.intel.mtwilson.core.host.connector.HostConnector;
 import com.intel.mtwilson.core.host.connector.HostConnectorFactory;
 import java.io.IOException;
@@ -35,6 +39,7 @@ public class ProvisionAssetTag {
      * tag certificate SHA384, host connection string and the TlsPolicy object
      *
      * @param hostConn Host connection String
+     * @param aasApiUrl
      * @param sha384Digest Sha5256 Digest of the AssetTag Certificate
      * @param tlsPolicy tlsPolicy object for the host
      * @since CIT Next Gen
@@ -50,13 +55,13 @@ public class ProvisionAssetTag {
      * @throws IOException The function throws IOException
      */
     //The format of hostconnection string is Intel:https://192.168.0.1:1443/u=admin;p=password(serverType:https://serverIP:portnumber/;u=uname;p=password)
-    public void provisionTagCertificate(String hostConn, String sha384Digest, TlsPolicy tlsPolicy) throws IOException {
+    public void provisionTagCertificate(String hostConn, String aasApiUrl, String sha384Digest, TlsPolicy tlsPolicy) throws IOException {
 
         log.debug("The sha384 value of the AssetTag certificate we are trying to provision is: "+sha384Digest);
         Sha384Digest certSha384 = Sha384Digest.valueOf(sha384Digest);
         log.debug("Calling the host Connector library setAssetTAg method to provision the asset tag");
         HostConnectorFactory factory = new HostConnectorFactory();
-        HostConnector hostConnector = factory.getHostConnector(hostConn,tlsPolicy);
+        HostConnector hostConnector = factory.getHostConnector(hostConn, aasApiUrl, tlsPolicy);
         hostConnector.setAssetTagSha384(certSha384);
     }
 
@@ -65,6 +70,7 @@ public class ProvisionAssetTag {
      * tag certificate, host connection string and the TlsPolicy Object
      *
      * @param hostConn Host connection String
+     * @param aasApiUrl
      * @param certificate Asset tag certificate in byte array format
      * @param tlsPolicy tlsPolicy object for the host
      * @since CIT Next Gen
@@ -79,7 +85,7 @@ public class ProvisionAssetTag {
      *
      * @throws IOException The function throws IOException
      */
-    public void provisionTagCertificate(String hostConn, byte[] certificate, TlsPolicy tlsPolicy) throws IOException {
+    public void provisionTagCertificate(String hostConn, String aasApiUrl, byte[] certificate, TlsPolicy tlsPolicy) throws IOException {
 
         String sha384Digest = getCertSha384(certificate);
 
@@ -87,7 +93,8 @@ public class ProvisionAssetTag {
         log.debug("The sha384 value of the AssetTag certificate we are trying to provision is: "+certSha384.toString());
         log.debug("Calling the host Connector library setAssetTag method to provision the asset tag");
         HostConnectorFactory factory = new HostConnectorFactory();
-        HostConnector hostConnector = factory.getHostConnector(hostConn,tlsPolicy);
+
+        HostConnector hostConnector = factory.getHostConnector(hostConn, aasApiUrl, tlsPolicy);
         hostConnector.setAssetTagSha384(certSha384);
 
     }

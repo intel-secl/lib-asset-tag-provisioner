@@ -38,7 +38,7 @@ public class ProvisionAssetTagIntegration {
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, MicrosoftHostConnectorFactory.class);
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, VmwareHostConnectorFactory.class);
         ProvisionAssetTag provisionTag = new ProvisionAssetTag();
-        provisionTag.provisionTagCertificate(hostConn, sha384Digest, tlsPolicy);
+        provisionTag.provisionTagCertificate(hostConn, aasApiUrl, sha384Digest, tlsPolicy);
     }
 
     /**
@@ -55,6 +55,6 @@ public class ProvisionAssetTagIntegration {
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, MicrosoftHostConnectorFactory.class);
         WhiteboardExtensionProvider.register(VendorHostConnectorFactory.class, VmwareHostConnectorFactory.class);        
         ProvisionAssetTag provisionTag = new ProvisionAssetTag();
-        provisionTag.provisionTagCertificate(hostConn, certificate, tlsPolicy);
+        provisionTag.provisionTagCertificate(hostConn, aasApiUrl, certificate, tlsPolicy);
     }
 }
